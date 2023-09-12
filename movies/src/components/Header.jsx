@@ -10,8 +10,8 @@ const HeaderWrapper = styled.div`
   align-items: center;
   width: 98vw;
   padding: 10px 0;
-  background-color: #333; /* Add your desired background color here */
-  color: white; /* Add your desired text color here */
+  background-color: #333; 
+  color: white; 
 `;
 
 const LogoWrapper = styled.div`
@@ -21,20 +21,20 @@ const LogoWrapper = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 18px; 
 `;
 
 const LogoImage = styled.img`
-  width: 30px; /* Adjust the width as needed */
-  height: 30px; /* Adjust the height as needed */
-  margin-right: 10px; /* Add spacing between the logo and text */
+  width: 30px; 
+  height: 30px; 
+  margin-right: 10px; 
 `;
 
 const FormWrapper = styled.form`
   display: flex;
   align-items: center;
   width: 600px;
-  margin: 0 20px; /* Add spacing around the form */
+  margin: 0 20px; 
   position: relative;
 `;
 
@@ -44,13 +44,13 @@ const Input = styled.input`
   border: none;
   border-radius: 10px;
   outline: none;
-  margin-right: 10px; /* Add spacing between the input and button */
+  margin-right: 10px; 
 `;
 
 const Button = styled.button`
   padding: 10px 15px;
-  background-color: #007bff; /* Add your desired button color here */
-  color: white; /* Add your desired button text color here */
+  background-color: #007bff; 
+  color: white; 
   border: none;
   border-radius: 25px;
   cursor: pointer;
