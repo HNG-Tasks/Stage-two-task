@@ -68,18 +68,6 @@ const MovieCard = styled.div`
     font-size: 14px;
     color: #555;
   }
-
-  .favorite img {
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-    transition: filter 0.3s;
-
-    &:hover {
-      background-color: red;
-      filter: brightness(1.5);
-    }
-  }
 `;
 
 const FlexContainer = styled.div`

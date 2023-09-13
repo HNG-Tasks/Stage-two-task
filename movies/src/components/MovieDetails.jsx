@@ -22,6 +22,10 @@ const MovieInfo = styled.div`
   width: 100%;
   text-align: left;
 
+  @media (max-width: 360px) {
+    margin-bottom: 10px;
+  }
+
   h2 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -31,6 +35,12 @@ const MovieInfo = styled.div`
     font-size: 18px;
     line-height: 1.5;
     margin: 6px 0;
+  }
+
+  @media (max-width: 360px) {
+    p {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -42,6 +52,10 @@ const StyledLink = styled(Link)`
   border-radius: 5px;
   display: inline-block;
   margin: 0 0 5px 15px;
+
+  @media (max-width: 360px) {
+    margin-top: 10px;
+  }
 `;
 
 const IconWrapper = styled.span`
