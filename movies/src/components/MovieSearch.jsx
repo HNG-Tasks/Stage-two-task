@@ -5,6 +5,8 @@ import fruit from "../assets/PngItem_1381056 1.svg";
 import site from "../assets/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.svg";
 import favorite from "../assets/Favorite.svg";
 import { TailSpin } from "react-loader-spinner";
+import { FcLike } from "react-icons/fc";
+import { MdOutlineFavoriteBorder } from "react-icons/md"
 import styled from "styled-components";
 
 // Styles
@@ -97,6 +99,7 @@ const MovieSearch = ({ search }) => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleMovieClick = (movieId) => {
     navigate(`/movie/${movieId}`);
@@ -164,8 +167,10 @@ const MovieSearch = ({ search }) => {
             data-testid="movie-card"
             className="movie-card"
             onClick={() => handleMovieClick(movie.id)}
+            onMouseEnter={() => setIsFavorite(true)}
+            onMouseLeave={() => setIsFavorite(false)}
           >
-            <img src={favorite} alt="like icon" className="favorite" />
+          {isFavorite ? <FcLike/> : <MdOutlineFavoriteBorder/>}
             <img
               data-testid="movie-poster"
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

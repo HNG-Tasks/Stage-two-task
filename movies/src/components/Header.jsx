@@ -9,7 +9,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 98vw;
-  padding: 10px 0;
+  padding: 15px 0;
   background-color: #333;
   color: white;
 
