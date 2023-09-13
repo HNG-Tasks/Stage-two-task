@@ -28,7 +28,8 @@ const MovieInfo = styled.div`
   }
 
   p {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.5;
     margin: 6px 0;
   }
 `;
@@ -103,7 +104,7 @@ const MovieDetails = () => {
           <p data-testid="movie-release-date">
             Release Date: {movie.release_date}
           </p>
-          <p data-testid="movie-runtime">Runtime: {movie.runtime}</p>
+          <p data-testid="movie-runtime">Runtime (Minutes): {movie.runtime}</p>
           <p data-testid="movie-overview">Overview: {movie.overview}</p>
         </MovieInfo>
       </Container>
