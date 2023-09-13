@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import fruit from "../assets/PngItem_1381056 1.svg";
 import site from "../assets/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.svg";
-import favorite from "../assets/Favorite.svg";
 import { TailSpin } from "react-loader-spinner";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineFavoriteBorder } from "react-icons/md"
