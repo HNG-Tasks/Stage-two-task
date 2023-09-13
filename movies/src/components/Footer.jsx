@@ -1,6 +1,10 @@
-import React from 'react'
-import { AiFillYoutube, AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
-import styled from 'styled-components';
+import React from "react";
+import {
+  AiFillYoutube,
+  AiOutlineTwitter,
+  AiFillFacebook,
+} from "react-icons/ai";
+import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   background-color: #333333;
@@ -37,19 +41,19 @@ const CopyrightText = styled.p`
 const Footer = () => {
   return (
     <FooterContainer>
-    <SocialIcons>
-      <AiFillYoutube />
-      <AiOutlineTwitter />
-      <AiFillFacebook />
-    </SocialIcons>
-    <FooterList>
-      <li>Privacy & Policy</li>
-      <li>Terms & Conditions</li>
-    </FooterList>
-    <CopyrightText>TMDB - Movie Discovery Website</CopyrightText>
-    <CopyrightText>&copy; 2023 Created by Blessing Dawodu</CopyrightText>
-  </FooterContainer>
-);
+      <SocialIcons>
+        <AiFillYoutube />
+        <AiOutlineTwitter />
+        <AiFillFacebook />
+      </SocialIcons>
+      <FooterList>
+        <li>Privacy & Policy</li>
+        <li>Terms & Conditions</li>
+      </FooterList>
+      <CopyrightText>TMDB - Movie Discovery Website</CopyrightText>
+      <CopyrightText>&copy; 2023 Created by Blessing Dawodu</CopyrightText>
+    </FooterContainer>
+  );
 };
 
 export default Footer;

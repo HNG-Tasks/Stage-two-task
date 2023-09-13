@@ -59,3 +59,4 @@ This project is built with the following technologies and tools:
 - React (using Vite as the build tool)
 - Styled Components for styling
 - Axios for making API requests
+- React-spinner for loading effect

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import {AiOutlineArrowLeft} from 'react-icons/ai'
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ const StyledLink = styled(Link)`
   padding: 10px 15px;
   border-radius: 5px;
   display: inline-block;
-  margin-bottom: 5px;
+  margin: 0 0 5px 15px;
 `;
 
 const IconWrapper = styled.span`
@@ -48,56 +49,73 @@ const IconWrapper = styled.span`
 `;
 
 const MovieDetails = () => {
+  const [loading, setLoading] = useState(true);
+  const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
 
-    const [loading, setLoading] = useState(true);
-    const [movie, setMovie] = useState(null);
-    const [error, setError] = useState(null);
-    const { id } = useParams();
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-    useEffect(() => {
-      setLoading(true);
-      setError(null);
+    const apiKey = "3f37434b13abe76ffcb940b673bef6c5";
 
-      const apiKey = '3f37434b13abe76ffcb940b673bef6c5';
-    
-      axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then((response) => {
-          setMovie(response.data);
-          setLoading(false);
+        setMovie(response.data);
+        setLoading(false);
       })
       .catch((error) => {
-          setError(error);
-          setLoading(false);
+        setError(error);
+        setLoading(false);
       });
-}, [id]);
-     
-if (loading) {
-    return <div>Loading...</div>;
-}
+  }, [id]);
 
-if (error || !movie) {
-    return <div>Error: {error ? error.message : 'Movie not found'}</div>;
-}
-    
+  if (loading) {
+    return (
+      <div className="loader-container">
+        {" "}
+        <TailSpin
+          padding="40"
+          height="160"
+          width="400"
+          color="#e11d48"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
+
+  if (error || !movie) {
+    return <div>Error: {error ? error.message : "Movie not found"}</div>;
+  }
+
   return (
     <>
-    <Container>
-         <MovieInfo>
-            <h2 data-testid='movie-title'>{movie.title}</h2>
-            <p data-testid='movie-release-date'>Release Date (UTC): {movie.release_date}</p>
-            <p data-testid='movie-runtime'>Runtime (minutes): {movie.runtime}</p>
-            <p data-testid='movie-overview'>Overview: {movie.overview}</p>
+      <Container>
+        <MovieInfo>
+          <h2 data-testid="movie-title">{movie.title}</h2>
+          <p data-testid="movie-release-date">
+            Release Date: {movie.release_date}
+          </p>
+          <p data-testid="movie-runtime">Runtime: {movie.runtime}</p>
+          <p data-testid="movie-overview">Overview: {movie.overview}</p>
         </MovieInfo>
-    </Container>
+      </Container>
 
-    <div>
-    <StyledLink to="/">
-    <IconWrapper>
-          <AiOutlineArrowLeft />
-        </IconWrapper>
-      Movie Search
-      </StyledLink>
-  </div>
+      <div>
+        <StyledLink to="/">
+          <IconWrapper>
+            <AiOutlineArrowLeft />
+          </IconWrapper>
+          Movie Search
+        </StyledLink>
+      </div>
     </>
   );
 };

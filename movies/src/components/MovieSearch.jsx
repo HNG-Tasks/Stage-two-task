@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import fruit from '../assets/PngItem_1381056 1.svg';
-import site from '../assets/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.svg';
-import styled from 'styled-components'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import fruit from "../assets/PngItem_1381056 1.svg";
+import site from "../assets/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.svg";
+import favorite from "../assets/Favorite.svg";
+import { TailSpin } from "react-loader-spinner";
+import styled from "styled-components";
 
 // Styles
 const Container = styled.div`
@@ -11,15 +13,25 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 40px;
+
+  @media (max-width: 360px) {
+    margin-top: 20px;
+  }
 `;
 
-const Title = styled.h2`
-  margin: 0;
+const Title = styled.h3`
+  font-size: 22px;
+  margin-left: 10px;
+
+  @media (max-width: 360px) {
+    font-size: 18px;
+  }
 `;
 
 const SeeMore = styled.span`
   margin-right: 10px;
   color: red;
+  cursor: pointer;
 `;
 
 const GridContainer = styled.div`
@@ -27,6 +39,11 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 20px;
+
+  @media (max-width: 360px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
 `;
 
 const MovieCard = styled.div`
@@ -49,7 +66,19 @@ const MovieCard = styled.div`
   p {
     font-size: 14px;
     color: #555;
-  } 
+  }
+
+  .favorite img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: filter 0.3s;
+
+    &:hover {
+      background-color: red;
+      filter: brightness(1.5);
+    }
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -63,75 +92,107 @@ const ImageContainer = styled.div`
 `;
 
 const MovieSearch = ({ search }) => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [loading, setLoading] = useState(true);
-    const [movies, setMovies] = useState([]);
-    const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
 
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
 
-    const handleMovieClick = (movieId) => {
-      navigate(`/movie/${movieId}`);
-    };
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-    useEffect(() => {
-      console.log('useEffect called');
-        setLoading(true);
-        setError(null);
+    // Generated TMDB API key
+    const apiKey = "3f37434b13abe76ffcb940b673bef6c5";
 
-        // Generated TMDB API key
-        const apiKey = '3f37434b13abe76ffcb940b673bef6c5';
+    // Fetched trending movies
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
+      )
+      .then((response) => {
+        console.log(response.data.results);
+        setMovies(response.data.results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [search]);
 
-        // Fetched trending movies
-        axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&query=${search}`)
-            .then((response) => {
-              console.log(response.data.results)
-                setMovies(response.data.results);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error);
-                setLoading(false);
-            });
-    }, [search]);
-
-    console.log('loading:', loading);
-    console.log('error:', error);
-    console.log('movies:', movies);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
-
+  if (loading) {
     return (
-        <>
-            <Container>
-            <Title>Featured Movies</Title>
-            <SeeMore>See more</SeeMore>
-            </Container>
-            <GridContainer>
-                {movies.slice(0, 10).map(movie => (
-                    <MovieCard key={movie.id} data-testid='movie-card' className="movie-card" onClick={() => handleMovieClick(movie.id)}>
-                        <img data-testid='movie-poster' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="movie-poster" />
-                        <h3 data-testid='movie-title' className="movie-title">{movie.title}</h3>
-                        <p data-testid='movie-release-date' className="movie-release-date">{movie.release_date}</p>
-                        <FlexContainer>
-                            <ImageContainer>
-                                <img src={site} alt="" />
-                            </ImageContainer>
-                            <ImageContainer>
-                                <img src={fruit} alt="" />
-                            </ImageContainer>
-                        </FlexContainer>
-                    </MovieCard>
-                ))}
-            </GridContainer>
-        </>
+      <div className="loader-container">
+        <TailSpin
+          margin="100"
+          height="160"
+          width="400"
+          color="#e11d48"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
     );
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (movies.length === 0) {
+    return <div>No movies found with the title "{search}"</div>;
+  }
+
+  return (
+    <>
+      <Container>
+        <Title>Featured Movies</Title>
+        <SeeMore>See more</SeeMore>
+      </Container>
+      <GridContainer>
+        {movies.slice(0, 10).map((movie) => (
+          <MovieCard
+            key={movie.id}
+            data-testid="movie-card"
+            className="movie-card"
+            onClick={() => handleMovieClick(movie.id)}
+          >
+            <img src={favorite} alt="like icon" className="favorite" />
+            <img
+              data-testid="movie-poster"
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              className="movie-poster"
+            />
+            <h3 data-testid="movie-title" className="movie-title">
+              {movie.title}
+            </h3>
+            <p data-testid="movie-release-date" className="movie-release-date">
+              {movie.release_date}
+            </p>
+            <FlexContainer>
+              <ImageContainer>
+                <img src={site} alt="site" />
+                <p>{movie.vote_average}</p>
+              </ImageContainer>
+              <ImageContainer>
+                <img src={fruit} alt="tomato" />
+                <p>{movie.vote_count}</p>
+              </ImageContainer>
+            </FlexContainer>
+          </MovieCard>
+        ))}
+      </GridContainer>
+    </>
+  );
 };
 
 export default MovieSearch;
