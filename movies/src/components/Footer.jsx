@@ -1,9 +1,10 @@
 import React from "react";
 import {
   AiFillYoutube,
-  AiOutlineTwitter,
+  AiOutlineInstagram,
   AiFillFacebook,
 } from "react-icons/ai";
+import { RiTwitterXFill } from "react-icons/ri";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
@@ -20,6 +21,23 @@ const SocialIcons = styled.div`
 
   svg {
     margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+
+  svg:nth-child(1):hover {
+    color: red;
+  }
+
+  svg:nth-child(2):hover {
+    color: black;
+  }
+
+  svg:nth-child(3):hover {
+    color: #e2254f;
+  }
+
+  svg:nth-child(4):hover {
+    color: blue;
   }
 `;
 
@@ -43,7 +61,8 @@ const Footer = () => {
     <FooterContainer>
       <SocialIcons>
         <AiFillYoutube />
-        <AiOutlineTwitter />
+        <RiTwitterXFill />
+        <AiOutlineInstagram />
         <AiFillFacebook />
       </SocialIcons>
       <FooterList>

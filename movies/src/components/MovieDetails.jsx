@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 
 const MovieInfo = styled.div`
+  position: relative;
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
@@ -116,10 +117,29 @@ const MovieDetails = () => {
         <MovieInfo>
           <h2 data-testid="movie-title">{movie.title}</h2>
           <p data-testid="movie-release-date">
-            Release Date: {movie.release_date}
+            <span
+              style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
+            >
+              Release Date:
+            </span>{" "}
+            {movie.release_date}
           </p>
-          <p data-testid="movie-runtime">Runtime (Minutes): {movie.runtime}</p>
-          <p data-testid="movie-overview">Overview: {movie.overview}</p>
+          <p data-testid="movie-runtime">
+            <span
+              style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
+            >
+              Runtime (Minutes):
+            </span>{" "}
+            {movie.runtime}
+          </p>
+          <p data-testid="movie-overview">
+            <span
+              style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
+            >
+              Overview:
+            </span>{" "}
+            {movie.overview}
+          </p>
         </MovieInfo>
       </Container>
 

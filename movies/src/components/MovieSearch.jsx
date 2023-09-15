@@ -5,7 +5,7 @@ import fruit from "../assets/PngItem_1381056 1.svg";
 import site from "../assets/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.svg";
 import { TailSpin } from "react-loader-spinner";
 import { FcLike } from "react-icons/fc";
-import { MdOutlineFavoriteBorder } from "react-icons/md"
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 import styled from "styled-components";
 
 // Styles
@@ -86,7 +86,7 @@ const MovieSearch = ({ search }) => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState({});
 
   const handleMovieClick = (movieId) => {
     navigate(`/movie/${movieId}`);
@@ -105,8 +105,13 @@ const MovieSearch = ({ search }) => {
         `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
       )
       .then((response) => {
-        console.log(response.data.results);
-        setMovies(response.data.results);
+        const movieData = response.data.results;
+        setMovies(movieData);
+        const initialIsFavorite = {};
+        movieData.forEach((movie) => {
+          initialIsFavorite[movie.id] = false;
+        });
+        setIsFavorite(initialIsFavorite);
         setLoading(false);
       })
       .catch((error) => {
@@ -114,6 +119,14 @@ const MovieSearch = ({ search }) => {
         setLoading(false);
       });
   }, [search]);
+
+  const handleFavoriteClick = (event, movieId) => {
+    event.stopPropagation();
+    setIsFavorite({
+      ...isFavorite,
+      [movieId]: !isFavorite[movieId],
+    });
+  };
 
   if (loading) {
     return (
@@ -154,10 +167,16 @@ const MovieSearch = ({ search }) => {
             data-testid="movie-card"
             className="movie-card"
             onClick={() => handleMovieClick(movie.id)}
-            onMouseEnter={() => setIsFavorite(true)}
-            onMouseLeave={() => setIsFavorite(false)}
           >
-          {isFavorite ? <FcLike/> : <MdOutlineFavoriteBorder/>}
+            {isFavorite[movie.id] ? (
+              <FcLike
+                onClick={(event) => handleFavoriteClick(event, movie.id)}
+              />
+            ) : (
+              <MdOutlineFavoriteBorder
+                onClick={(event) => handleFavoriteClick(event, movie.id)}
+              />
+            )}
             <img
               data-testid="movie-poster"
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -173,11 +192,11 @@ const MovieSearch = ({ search }) => {
             <FlexContainer>
               <ImageContainer>
                 <img src={site} alt="site" />
-                <p>{movie.vote_average}</p>
+                <p data-testid="movie-vote_average">{movie.vote_average}</p>
               </ImageContainer>
               <ImageContainer>
                 <img src={fruit} alt="tomato" />
-                <p>{movie.vote_count}</p>
+                <p data-testid="movie-vote_count">{movie.vote_count}</p>
               </ImageContainer>
             </FlexContainer>
           </MovieCard>

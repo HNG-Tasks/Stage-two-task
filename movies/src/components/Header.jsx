@@ -39,6 +39,7 @@ const LogoImage = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  cursor: pointer;
 
   @media (max-width: 360px) {
     width: 40px;
@@ -95,6 +96,10 @@ const SignInWrapper = styled.div`
   align-items: center;
   margin-right: 25px;
 
+  img {
+    cursor: pointer;
+  }
+
   @media (max-width: 360px) {
     margin-right: 0;
     margin-top: 20px;
@@ -116,7 +121,7 @@ const Header = ({ handleSearch }) => {
   return (
     <HeaderWrapper>
       <LogoWrapper>
-        <LogoImage src={logo} alt="" />
+        <LogoImage src={logo} alt="logo" />
         <Title>Movie Box</Title>
       </LogoWrapper>
       <FormWrapper onSubmit={handleSubmit}>
@@ -130,7 +135,7 @@ const Header = ({ handleSearch }) => {
       </FormWrapper>
       <SignInWrapper>
         <span style={{ marginRight: "10px" }}>Sign in</span>
-        <img src={Menu} alt="" />
+        <img src={Menu} alt="sign in" />
       </SignInWrapper>
     </HeaderWrapper>
   );
