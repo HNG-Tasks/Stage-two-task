@@ -23,7 +23,7 @@ const MovieInfo = styled.div`
   width: 100%;
   text-align: left;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     margin-bottom: 10px;
   }
 
@@ -38,7 +38,7 @@ const MovieInfo = styled.div`
     margin: 6px 0;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     p {
       font-size: 16px;
     }
@@ -54,7 +54,7 @@ const StyledLink = styled(Link)`
   display: inline-block;
   margin: 0 0 5px 15px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     margin-top: 10px;
   }
 `;

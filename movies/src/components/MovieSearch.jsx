@@ -15,7 +15,7 @@ const Container = styled.div`
   align-items: center;
   margin-top: 40px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     margin-top: 20px;
   }
 `;
@@ -24,7 +24,7 @@ const Title = styled.h3`
   font-size: 22px;
   margin-left: 10px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     font-size: 18px;
   }
 `;
@@ -41,7 +41,7 @@ const GridContainer = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 20px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
   }
@@ -55,7 +55,7 @@ const MovieCard = styled.div`
   cursor: pointer;
 
   img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
 

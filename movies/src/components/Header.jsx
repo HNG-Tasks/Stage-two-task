@@ -13,7 +13,7 @@ const HeaderWrapper = styled.header`
   background-color: #333;
   color: white;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     flex-direction: column;
     align-items: center;
     padding: 15px 0;
@@ -25,7 +25,7 @@ const LogoWrapper = styled.div`
   align-items: center;
   margin-left: 20px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     margin-left: 0;
     margin-bottom: 20px;
   }
@@ -41,7 +41,7 @@ const LogoImage = styled.img`
   margin-right: 10px;
   cursor: pointer;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     width: 40px;
     height: 40px;
   }
@@ -54,7 +54,7 @@ const FormWrapper = styled.form`
   margin: 0 20px;
   position: relative;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     width: 80%;
     margin: 0;
   }
@@ -68,7 +68,7 @@ const Input = styled.input`
   outline: none;
   margin-right: 10px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     padding: 15px;
     font-size: 16px;
   }
@@ -86,7 +86,7 @@ const Button = styled.button`
   top: 0;
   bottom: 0;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     padding: 12px 18px;
   }
 `;
@@ -100,7 +100,7 @@ const SignInWrapper = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     margin-right: 0;
     margin-top: 20px;
   }
