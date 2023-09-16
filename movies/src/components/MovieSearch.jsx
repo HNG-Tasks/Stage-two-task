@@ -89,7 +89,7 @@ const MovieSearch = ({ search }) => {
   const [isFavorite, setIsFavorite] = useState({});
 
   const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+    navigate(`/movies/${movieId}`);
   };
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const MovieSearch = ({ search }) => {
     // Fetched trending movies
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&query=${search}`
       )
       .then((response) => {
         const movieData = response.data.results;
@@ -183,20 +183,20 @@ const MovieSearch = ({ search }) => {
               alt={movie.title}
               className="movie-poster"
             />
-            <h3 data-testid="movie-title" className="movie-title">
+            <h3 className="movie-title"> <span data-testid="movie-title"></span>
               {movie.title}
             </h3>
-            <p data-testid="movie-release-date" className="movie-release-date">
+            <p className="movie-release-date"> <span data-testid="movie-release-date"></span>
               {movie.release_date}
             </p>
             <FlexContainer>
               <ImageContainer>
                 <img src={site} alt="site" />
-                <p data-testid="movie-vote_average">{movie.vote_average}</p>
+                <p> <span data-testid="movie-vote_average"></span>{movie.vote_average}</p>
               </ImageContainer>
               <ImageContainer>
                 <img src={fruit} alt="tomato" />
-                <p data-testid="movie-vote_count">{movie.vote_count}</p>
+                <p> <span data-testid="movie-vote_count"></span>{movie.vote_count}</p>
               </ImageContainer>
             </FlexContainer>
           </MovieCard>

@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("a");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -19,7 +19,7 @@ function App() {
         <Header handleSearch={handleSearch} />
         <Routes>
           <Route path="/" element={<MovieSearch search={searchQuery} />} />
-          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
         </Routes>
         <Footer />
       </div>

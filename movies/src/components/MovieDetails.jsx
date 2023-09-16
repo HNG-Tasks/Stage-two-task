@@ -111,28 +111,32 @@ const MovieDetails = () => {
     return <div>Error: {error ? error.message : "Movie not found"}</div>;
   }
 
+  // Convert release_date to a string
+  const releaseDate = new Date(movie.release_date).toString();
+
+
   return (
     <>
       <Container>
         <MovieInfo>
-          <h2 data-testid="movie-title">{movie.title}</h2>
-          <p data-testid="movie-release-date">
+          <h2> <span data-testid="movie-title"></span>{movie.title}</h2>
+          <p> <span data-testid="movie-release-date"></span>
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
               Release Date:
             </span>{" "}
-            {movie.release_date}
+            {releaseDate}
           </p>
-          <p data-testid="movie-runtime">
+          <p> <span data-testid="movie-runtime"></span>
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
               Runtime (Minutes):
             </span>{" "}
-            {movie.runtime}
+            {movie.runtime.toString()}
           </p>
-          <p data-testid="movie-overview">
+          <p> <span data-testid="movie-overview"></span>
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
