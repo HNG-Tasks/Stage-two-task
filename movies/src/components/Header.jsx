@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import logo from "../assets/tv.svg";
 import Menu from "../assets/Menu.svg";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
@@ -121,7 +122,7 @@ const Header = ({ handleSearch }) => {
   return (
     <HeaderWrapper>
       <LogoWrapper>
-        <LogoImage src={logo} alt="logo" />
+        <Link to="/"><LogoImage src={logo} alt="logo" /></Link>
         <Title>Movie Box</Title>
       </LogoWrapper>
       <FormWrapper onSubmit={handleSubmit}>

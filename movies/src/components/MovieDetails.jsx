@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 70vh;
-`;
+`;  
 
 const MovieInfo = styled.div`
   position: relative;
@@ -116,7 +116,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Container>
+      <Container> 
         <MovieInfo>
           <h2 data-testid="movie-title"> {movie.title}</h2>
           <p>

@@ -104,7 +104,7 @@ const MovieSearch = ({ search }) => {
     // Fetched trending movies
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&query=${search}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
       )
       .then((response) => {
         const movieData = response.data.results;
