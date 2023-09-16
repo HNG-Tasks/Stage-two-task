@@ -114,13 +114,13 @@ const MovieDetails = () => {
   // Convert release_date to a string
   const releaseDate = new Date(movie.release_date).toDateString();
 
-
   return (
     <>
       <Container>
         <MovieInfo>
-          <h2> <span data-testid="movie-title"></span>{movie.title}</h2>
-          <p> <span data-testid="movie-release-date"></span>
+          <h2 data-testid="movie-title"> {movie.title}</h2>
+          <p data-testid="movie-release-date">
+            {" "}
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
@@ -128,7 +128,7 @@ const MovieDetails = () => {
             </span>{" "}
             {releaseDate}
           </p>
-          <p> <span data-testid="movie-runtime"></span>
+          <p data-testid="movie-runtime">
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
@@ -136,7 +136,7 @@ const MovieDetails = () => {
             </span>{" "}
             {movie.runtime.toString()}
           </p>
-          <p> <span data-testid="movie-overview"></span>
+          <p data-testid="movie-overview">
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >

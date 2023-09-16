@@ -78,6 +78,8 @@ const FlexContainer = styled.div`
 
 const ImageContainer = styled.div`
   padding: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const MovieSearch = ({ search }) => {
@@ -164,9 +166,10 @@ const MovieSearch = ({ search }) => {
         {movies.slice(0, 10).map((movie) => (
           <MovieCard
             key={movie.id}
+            data-testid="movie-card"
             className="movie-card"
             onClick={() => handleMovieClick(movie.id)}
-          > <span data-testid="movie-card"></span>
+          >
             {isFavorite[movie.id] ? (
               <FcLike
                 onClick={(event) => handleFavoriteClick(event, movie.id)}
@@ -182,17 +185,30 @@ const MovieSearch = ({ search }) => {
               alt={movie.title}
               className="movie-poster"
             />
-            <h3 className="movie-title"> <span data-testid="movie-title">{movie.title}</span>
+            <h3 data-testid="movie-title" className="movie-title">
+              {movie.title}
             </h3>
-            <p className="movie-release-date"> <span data-testid="movie-release-date"> {new Date(movie.release_date).toDateString()}</span>
+            <p data-testid="movie-release-date" className="movie-release-date">
+              {" "}
+              {new Date(movie.release_date).toDateString()}
             </p>
             <FlexContainer>
               <ImageContainer>
-                <img src={site} alt="site" style={{marginRight: "8px", textAlign: "center"}}/>
-                <span data-testid="movie-vote_average">{movie.vote_average}</span>
+                <img
+                  src={site}
+                  alt="site"
+                  style={{ marginRight: "8px", textAlign: "center" }}
+                />
+                <span data-testid="movie-vote_average">
+                  {movie.vote_average}
+                </span>
               </ImageContainer>
               <ImageContainer>
-                <img src={fruit} alt="tomato" style={{marginRight: "8px", textAlign: "center"}}/>
+                <img
+                  src={fruit}
+                  alt="tomato"
+                  style={{ marginRight: "8px", textAlign: "center" }}
+                />
                 <span data-testid="movie-vote_count">{movie.vote_count}</span>
               </ImageContainer>
             </FlexContainer>
