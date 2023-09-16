@@ -119,30 +119,32 @@ const MovieDetails = () => {
       <Container>
         <MovieInfo>
           <h2 data-testid="movie-title"> {movie.title}</h2>
-          <p data-testid="movie-release-date">
+          <p>
             {" "}
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
               Release Date:
             </span>{" "}
-            {releaseDate}
+            <span data-testid="movie-release-date"> {releaseDate}</span>
           </p>
-          <p data-testid="movie-runtime">
+
+          <p>
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
               Runtime (Minutes):
             </span>{" "}
-            {movie.runtime.toString()}
+            <span data-testid="movie-runtime">{movie.runtime.toString()}</span>
+            
           </p>
-          <p data-testid="movie-overview">
+          <p>
             <span
               style={{ fontSize: "18px", fontWeight: "bold", color: "#e2254f" }}
             >
               Overview:
             </span>{" "}
-            {movie.overview}
+            <span data-testid="movie-overview"> {movie.overview}</span>
           </p>
         </MovieInfo>
       </Container>
