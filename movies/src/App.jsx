@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("a");
 
   const handleSearch = (query) => {
     setSearchQuery(query);

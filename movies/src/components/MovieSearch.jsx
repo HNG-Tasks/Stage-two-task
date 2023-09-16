@@ -164,10 +164,9 @@ const MovieSearch = ({ search }) => {
         {movies.slice(0, 10).map((movie) => (
           <MovieCard
             key={movie.id}
-            data-testid="movie-card"
             className="movie-card"
             onClick={() => handleMovieClick(movie.id)}
-          >
+          > <span data-testid="movie-card"></span>
             {isFavorite[movie.id] ? (
               <FcLike
                 onClick={(event) => handleFavoriteClick(event, movie.id)}
@@ -183,20 +182,18 @@ const MovieSearch = ({ search }) => {
               alt={movie.title}
               className="movie-poster"
             />
-            <h3 className="movie-title"> <span data-testid="movie-title"></span>
-              {movie.title}
+            <h3 className="movie-title"> <span data-testid="movie-title">{movie.title}</span>
             </h3>
-            <p className="movie-release-date"> <span data-testid="movie-release-date"></span>
-              {movie.release_date}
+            <p className="movie-release-date"> <span data-testid="movie-release-date"> {new Date(movie.release_date).toDateString()}</span>
             </p>
             <FlexContainer>
               <ImageContainer>
-                <img src={site} alt="site" />
-                <p> <span data-testid="movie-vote_average"></span>{movie.vote_average}</p>
+                <img src={site} alt="site" style={{marginRight: "8px", textAlign: "center"}}/>
+                <span data-testid="movie-vote_average">{movie.vote_average}</span>
               </ImageContainer>
               <ImageContainer>
-                <img src={fruit} alt="tomato" />
-                <p> <span data-testid="movie-vote_count"></span>{movie.vote_count}</p>
+                <img src={fruit} alt="tomato" style={{marginRight: "8px", textAlign: "center"}}/>
+                <span data-testid="movie-vote_count">{movie.vote_count}</span>
               </ImageContainer>
             </FlexContainer>
           </MovieCard>

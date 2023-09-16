@@ -112,7 +112,7 @@ const MovieDetails = () => {
   }
 
   // Convert release_date to a string
-  const releaseDate = new Date(movie.release_date).toString();
+  const releaseDate = new Date(movie.release_date).toDateString();
 
 
   return (
@@ -134,7 +134,7 @@ const MovieDetails = () => {
             >
               Runtime (Minutes):
             </span>{" "}
-            {movie.runtime.toString()}
+            {movie.runtime.toDateString}
           </p>
           <p> <span data-testid="movie-overview"></span>
             <span
