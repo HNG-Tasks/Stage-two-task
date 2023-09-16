@@ -134,7 +134,7 @@ const MovieDetails = () => {
             >
               Runtime (Minutes):
             </span>{" "}
-            {movie.runtime.toDateString}
+            {movie.runtime.toString()}
           </p>
           <p> <span data-testid="movie-overview"></span>
             <span
