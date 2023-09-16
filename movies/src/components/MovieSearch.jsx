@@ -42,7 +42,7 @@ const GridContainer = styled.div`
   gap: 20px;
 
   @media (max-width: 420px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
 `;
@@ -55,7 +55,7 @@ const MovieCard = styled.div`
   cursor: pointer;
 
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
   }
 
